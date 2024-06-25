@@ -60,14 +60,14 @@ def gained_per_author(conn):
     
     #export to excel file
     output_path = os.path.join(os.path.dirname(__file__), 'gained_x_author.xlsx')
-    join_titles.to_excel(output_path, index=False)
+    gained_x_author.to_excel(output_path, index=False)
 
 
 
     # print(join)
-    result = gained_x_author
+    # result = gained_x_author
 
-    return True
+    return gained_x_author
 
 
 if __name__ == "__authors__":
