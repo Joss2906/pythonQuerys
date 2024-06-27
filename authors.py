@@ -15,10 +15,13 @@ def main():
     database2 = 'northwind'
     
     conn = db_conn(database1)
-    df = gained_per_author(conn)
-    print(df)
-
+    result = gained_per_author(conn)
+    print(result)
     conn.close()
+    
+    #export to excel file
+    output_path = os.path.join(os.path.dirname(__file__), 'gained_x_author.xlsx')
+    result.to_excel(output_path, index=False)
 
 
 def gained_per_author(conn):
@@ -58,9 +61,6 @@ def gained_per_author(conn):
     gained_x_author = join_titles.groupby(['au_id'], as_index=False).agg({'gained': 'sum'})
     gained_x_author = gained_x_author[['au_id', 'gained']]
     
-    #export to excel file
-    output_path = os.path.join(os.path.dirname(__file__), 'gained_x_author.xlsx')
-    gained_x_author.to_excel(output_path, index=False)
 
 
 
